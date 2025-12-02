@@ -97,7 +97,7 @@ ZDoom features the following that is not found in the original Doom:
 UZDoom provides an OpenGL renderer and HQnX rescaling.
 
 %prep
-%setup -q -n %{name}-g%{version}
+%setup -q -n UZDoom-%{version}
 %patch -P 1 -P 2 -p1
 
 perl -i -pe 's{__DATE__}{""}g' \
