@@ -12,7 +12,6 @@ Summary:        An OpenGL DOOM source port with graphic and modding extensions
 License:        GPLv3
 Url:            http://zdoom.org
 Source0:        https://github.com/UZDoom/UZDoom/archive/refs/tags/%{version}.tar.gz
-Source1:        uzdoom.desktop
 
 Provides:       zdoom = 2.8.1
 Provides:       qzdoom = 1.3.0
@@ -131,13 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 %make_install -C builddir
 
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/applications
-%{__install} -m 0644 %{SOURCE1} \
-  ${RPM_BUILD_ROOT}%{_datadir}/applications/uzdoom.desktop
-
-# Don't know why but the XPM isn't put anywhere
-%{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps
-cp %{_builddir}/%{arc_name}-%{version}/src/posix/zdoom.xpm \
-  ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
 
 # Fallback soundfont - Symlinking instead of copying
 # as a test for now. It's not clear if the binary will look here
@@ -158,8 +150,10 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_bindir}/%{name}
 %{_datadir}/doom/*
 %{_docdir}/%{name}/*
-%{_datadir}/applications/uzdoom.desktop
-%{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
+%{_datadir}/applications/*.desktop
+%{_datadir}/icons/hicolor/scalable/apps/*.svg
+%{_datadir}/metainfo/*.xml
+%{_datadir}/mime/packages/*.xml
 %{_datadir}/games/uzdoom/*
 
 %changelog
