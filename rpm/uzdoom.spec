@@ -143,8 +143,8 @@ cp %{_builddir}/%{arc_name}-%{version}/src/posix/zdoom.xpm \
 # as a test for now. It's not clear if the binary will look here
 # or look in /usr/share/games/doom yet.
 pushd ${RPM_BUILD_ROOT}%{_datadir}/doom
-    %{__ln_s} %{_datadir}/games/doom/soundfounts soundfonts
-    %{__ln_s} %{_datadir}/games/doom/fm_banks fm_banks
+    %{__ln_s} %{_datadir}/games/uzdoom/soundfounts soundfonts
+    %{__ln_s} %{_datadir}/games/uzdoom/fm_banks fm_banks
 popd
 
 %post
@@ -160,7 +160,7 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_docdir}/%{name}/*
 %{_datadir}/applications/uzdoom.desktop
 %{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
-%{_datadir}/games/doom/*
+%{_datadir}/games/uzdoom/*
 
 %changelog
 * Tue Dec 02 2025 Louis Abel <tucklesepk@gmail.com> - 4.14.3-1
