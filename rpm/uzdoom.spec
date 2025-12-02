@@ -2,6 +2,7 @@
 %global major_version 4
 %global minor_version 14
 %global micro_version 3
+%global arc_name UZDoom
 #define debug_package %{nil}
 
 Name:           uzdoom
@@ -97,7 +98,7 @@ ZDoom features the following that is not found in the original Doom:
 UZDoom provides an OpenGL renderer and HQnX rescaling.
 
 %prep
-%setup -q -n UZDoom-%{version}
+%setup -q -n %{arc_name}-%{version}
 %patch -P 1 -P 2 -p1
 
 perl -i -pe 's{__DATE__}{""}g' \
@@ -135,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Don't know why but the XPM isn't put anywhere
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps
-cp %{_builddir}/%{name}-g%{version}/src/posix/zdoom.xpm \
+cp %{_builddir}/%{arc_name}-%{version}/src/posix/zdoom.xpm \
   ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
 
 # Fallback soundfont - Symlinking instead of copying
