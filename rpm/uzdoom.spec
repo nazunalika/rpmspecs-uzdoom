@@ -1,20 +1,21 @@
 # Global settings
 %global major_version 4
 %global minor_version 14
-%global micro_version 2
+%global micro_version 3
 #define debug_package %{nil}
 
-Name:           gzdoom
+Name:           uzdoom
 Version:        %{major_version}.%{minor_version}.%{micro_version}
 Release:        1%{?dist}
 Summary:        An OpenGL DOOM source port with graphic and modding extensions
 License:        GPLv3
 Url:            http://zdoom.org
-Source0:        https://github.com/coelckers/gzdoom/archive/g%{version}.tar.gz
-Source1:        gzdoom.desktop
+Source0:        https://github.com/UZDoom/UZDoom/archive/refs/tags/%{version}.tar.gz
+Source1:        uzdoom.desktop
 
 Provides:       zdoom = 2.8.1
 Provides:       qzdoom = 1.3.0
+Provides:       gzdoom = %{version}
 Provides:       bundled(re2c) = 0.16.0
 Provides:       bundled(gdtoa)
 #Provides:       bundled(lzma-sdk) = 17.01
@@ -93,11 +94,11 @@ ZDoom features the following that is not found in the original Doom:
   * Support for the Bloodbath announcer from the classic Monolith game Blood
   * Walk over/under monsters and other things
 
-GZDoom provides an OpenGL renderer and HQnX rescaling.
+UZDoom provides an OpenGL renderer and HQnX rescaling.
 
 %prep
 %setup -q -n %{name}-g%{version}
-%patch -P 1 -P 2 -P 3 -p1
+%patch -P 1 -P 2 -p1
 
 perl -i -pe 's{__DATE__}{""}g' \
         src/common/platform/posix/sdl/i_main.cpp
@@ -125,17 +126,17 @@ make %{?_smp_mflags} -C builddir
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# Install gzdoom
+# Install uzdoom
 %make_install -C builddir
 
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/applications
 %{__install} -m 0644 %{SOURCE1} \
-  ${RPM_BUILD_ROOT}%{_datadir}/applications/gzdoom.desktop
+  ${RPM_BUILD_ROOT}%{_datadir}/applications/uzdoom.desktop
 
 # Don't know why but the XPM isn't put anywhere
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps
 cp %{_builddir}/%{name}-g%{version}/src/posix/zdoom.xpm \
-  ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps/gzdoom.xpm
+  ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
 
 # Fallback soundfont - Symlinking instead of copying
 # as a test for now. It's not clear if the binary will look here
@@ -147,6 +148,8 @@ popd
 
 %post
 echo "INFO: %{name}: The global IWAD directory is %{_datadir}/doom."
+echo "INFO: %{name}: If you are upgrading from gzdoom, please see the following:"
+echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 
 %files
 %defattr(-, root, root, -)
@@ -154,11 +157,14 @@ echo "INFO: %{name}: The global IWAD directory is %{_datadir}/doom."
 %{_bindir}/%{name}
 %{_datadir}/doom/*
 %{_docdir}/%{name}/*
-%{_datadir}/applications/gzdoom.desktop
-%{_datadir}/icons/hicolor/256x256/apps/gzdoom.xpm
+%{_datadir}/applications/uzdoom.desktop
+%{_datadir}/icons/hicolor/256x256/apps/uzdoom.xpm
 %{_datadir}/games/doom/*
 
 %changelog
+* Tue Dec 02 2025 Louis Abel <tucklesepk@gmail.com> - 4.14.3-1
+- We are now uzdoom
+
 * Sun May 04 2025 Louis Abel <tucklesepk@gmail.com> - 4.14.2-1
 - Rebase to 4.14.2
 
