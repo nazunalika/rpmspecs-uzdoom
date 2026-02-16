@@ -102,12 +102,12 @@ UZDoom provides an OpenGL renderer and HQnX rescaling.
 
 perl -i -pe 's{__DATE__}{""}g' \
         src/common/platform/posix/sdl/i_main.cpp
-perl -i -pe 's{<unknown version>}{%version}g' \
-        tools/updaterevision/UpdateRevision.cmake
 
 %build
 %define _lto_cflags %nil
 export _rhel_flags="-fPIC"
+# set build version
+export GIT_DESCRIBE="%version"
 
 %cmake  -B builddir \
         -DNO_STRIP=1 \
