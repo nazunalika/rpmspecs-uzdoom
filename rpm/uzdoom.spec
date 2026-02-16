@@ -135,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 # as a test for now. It's not clear if the binary will look here
 # or look in /usr/share/games/doom yet.
 pushd ${RPM_BUILD_ROOT}%{_datadir}/doom
-    %{__ln_s} %{_datadir}/games/uzdoom/soundfounts soundfonts
+    %{__ln_s} %{_datadir}/games/uzdoom/soundfonts soundfonts
     %{__ln_s} %{_datadir}/games/uzdoom/fm_banks fm_banks
 popd
 
