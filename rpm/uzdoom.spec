@@ -7,7 +7,7 @@
 
 Name:           uzdoom
 Version:        %{major_version}.%{minor_version}.%{micro_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An OpenGL DOOM source port with graphic and modding extensions
 License:        GPLv3
 Url:            http://zdoom.org
@@ -100,8 +100,8 @@ UZDoom provides an OpenGL renderer and HQnX rescaling.
 %setup -q -n %{arc_name}-%{version}
 %patch -P 1 -P 2 -p1
 
-perl -i -pe 's{__DATE__}{""}g' \
-        src/common/platform/posix/sdl/i_main.cpp
+#perl -i -pe 's{__DATE__}{""}g' \
+#        src/common/platform/posix/sdl/i_main.cpp
 
 %build
 %define _lto_cflags %nil
@@ -157,6 +157,11 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_datadir}/games/uzdoom/*
 
 %changelog
+* Wed Mar 18 2026 Louis Abel <tucklesepk@gmail.com> - 4.14.3-2
+- Resolve PR #1 - Fix typo (@dudekaa)
+- Resolve PR #2 - fix setting build version (@dudekaa)
+- Comment out __DATE__ removal
+
 * Tue Dec 02 2025 Louis Abel <tucklesepk@gmail.com> - 4.14.3-1
 - We are now uzdoom
 
