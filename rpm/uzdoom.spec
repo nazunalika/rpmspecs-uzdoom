@@ -7,7 +7,7 @@
 
 Name:           uzdoom
 Version:        %{major_version}.%{minor_version}.%{micro_version}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        An OpenGL DOOM source port with graphic and modding extensions
 License:        GPLv3
 Url:            http://zdoom.org
@@ -121,13 +121,21 @@ export GIT_DESCRIBE="%version"
         -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 #make_build -C builddir
+%if 0%{?rhel} < 10
 make %{?_smp_mflags} -C builddir
+%else
+%cmake_build
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 # Install uzdoom
-%make_install -C builddir
+%if 0%{?rhel} < 10
+make_install -C builddir
+%else
+%cmake_install
+%endif
 
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/applications
 
@@ -157,10 +165,11 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_datadir}/games/uzdoom/*
 
 %changelog
-* Wed Mar 18 2026 Louis Abel <tucklesepk@gmail.com> - 4.14.3-2
+* Wed Mar 18 2026 Louis Abel <tucklesepk@gmail.com> - 4.14.3-3
 - Resolve PR #1 - Fix typo (@dudekaa)
 - Resolve PR #2 - fix setting build version (@dudekaa)
 - Comment out __DATE__ removal
+- Try to work with cmake changes
 
 * Tue Dec 02 2025 Louis Abel <tucklesepk@gmail.com> - 4.14.3-1
 - We are now uzdoom
