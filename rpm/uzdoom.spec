@@ -120,22 +120,14 @@ export GIT_DESCRIBE="%version"
         -DINSTALL_PK3_PATH="%{_datadir}/doom" \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-#make_build -C builddir
-%if 0%{?rhel} < 10
-make %{?_smp_mflags} -C builddir
-%else
+#make %{?_smp_mflags} -C builddir
 %cmake_build
-%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 # Install uzdoom
-%if 0%{?rhel} < 10
-make_install -C builddir
-%else
 %cmake_install
-%endif
 
 %{__mkdir} -p ${RPM_BUILD_ROOT}%{_datadir}/applications
 
