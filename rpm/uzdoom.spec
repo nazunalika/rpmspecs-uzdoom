@@ -109,8 +109,7 @@ export _rhel_flags="-fPIC"
 # set build version
 export GIT_DESCRIBE="%version"
 
-%cmake  -B builddir \
-        -DNO_STRIP=1 \
+%cmake  -DNO_STRIP=1 \
         -DCMAKE_C_FLAGS="$_rhel_flags" -DCMAKE_CXX_FLAGS="$_rhel_flags" \
         -DCMAKE_SHARED_LINKER_FLAGS="" \
         -DCMAKE_EXE_LINKER_FLAGS="" \
