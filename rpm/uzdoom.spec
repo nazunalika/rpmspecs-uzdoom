@@ -1,13 +1,13 @@
 # Global settings
-%global major_version 4
-%global minor_version 14
-%global micro_version 3
+%global major_version 5
+%global minor_version 0
+%global micro_version 0
 %global arc_name UZDoom
 #define debug_package %{nil}
 
 Name:           uzdoom
 Version:        %{major_version}.%{minor_version}.%{micro_version}
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        An OpenGL DOOM source port with graphic and modding extensions
 License:        GPLv3
 Url:            http://zdoom.org
@@ -156,6 +156,9 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_datadir}/games/uzdoom/*
 
 %changelog
+* Fri Aug 28 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.0-1
+- Update to 5.0.0
+
 * Wed Mar 18 2026 Louis Abel <tucklesepk@gmail.com> - 4.14.3-3
 - Resolve PR #1 - Fix typo (@dudekaa)
 - Resolve PR #2 - fix setting build version (@dudekaa)
