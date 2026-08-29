@@ -145,7 +145,7 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 
 %files
 %defattr(-, root, root, -)
-%doc docs/console.css docs/console.html docs/rh-log.txt docs/licenses/* docs/skins.txt
+%doc docs/console.css docs/console.html docs/licenses/*
 %{_bindir}/%{name}
 %{_datadir}/doom/*
 %{_docdir}/%{name}/*
