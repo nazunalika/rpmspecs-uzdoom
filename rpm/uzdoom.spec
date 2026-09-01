@@ -3,7 +3,7 @@
 %global minor_version 0
 %global micro_version 0
 %global arc_name UZDoom
-#define debug_package %{nil}
+%define debug_package %{nil}
 
 Name:           uzdoom
 Version:        %{major_version}.%{minor_version}.%{micro_version}
@@ -96,6 +96,14 @@ ZDoom features the following that is not found in the original Doom:
 
 UZDoom provides an OpenGL renderer and HQnX rescaling.
 
+%package devel
+Summary: uzdoom development library and header files
+Requires: uzdoom = %{version}-%{release}
+
+%description devel
+This devel package contains some development headers. It may or may not be usable
+for developing against uzdoom.
+
 %prep
 %setup -q -n %{arc_name}-%{version}
 %patch -P 1 -P 2 -p1
@@ -154,10 +162,18 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_datadir}/metainfo/*.xml
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/games/uzdoom/*
+%{_libdir}/*
+%exclude %{_libdir}/cmake/*
+
+%files devel
+%{_includedir}/*
+%{_libdir}/cmake/*
 
 %changelog
 * Fri Aug 28 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.0-1
 - Update to 5.0.0
+- Add devel package
+- Disable debug packages for now
 
 * Wed Mar 18 2026 Louis Abel <tucklesepk@gmail.com> - 4.14.3-3
 - Resolve PR #1 - Fix typo (@dudekaa)
