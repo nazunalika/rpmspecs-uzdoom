@@ -1,7 +1,7 @@
 # Global settings
 %global major_version 5
 %global minor_version 0
-%global micro_version 1
+%global micro_version 2
 %global arc_name UZDoom
 %define debug_package %{nil}
 
@@ -170,6 +170,9 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_libdir}/cmake/*
 
 %changelog
+* Wed Sep 23 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.2-1
+- Update to 5.0.2
+
 * Sun Sep 06 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.1-1
 - Update to 5.0.1
 
