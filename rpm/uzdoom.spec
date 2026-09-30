@@ -162,12 +162,12 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 %{_datadir}/metainfo/*.xml
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/games/uzdoom/*
-%{_libdir}/*
-%exclude %{_libdir}/cmake/*
+#{_libdir}/*
+#exclude %{_libdir}/cmake/*
 
 %files devel
 %{_includedir}/*
-%{_libdir}/cmake/*
+#{_libdir}/cmake/*
 
 %changelog
 * Wed Sep 23 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.3-1
