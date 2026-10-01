@@ -96,13 +96,13 @@ ZDoom features the following that is not found in the original Doom:
 
 UZDoom provides an OpenGL renderer and HQnX rescaling.
 
-%package devel
-Summary: uzdoom development library and header files
-Requires: uzdoom = %{version}-%{release}
+#%package devel
+#Summary: uzdoom development library and header files
+#Requires: uzdoom = %{version}-%{release}
 
-%description devel
-This devel package contains some development headers. It may or may not be usable
-for developing against uzdoom.
+#%description devel
+#This devel package contains some development headers. It may or may not be usable
+#for developing against uzdoom.
 
 %prep
 %setup -q -n %{arc_name}-%{version}
@@ -165,13 +165,14 @@ echo "INFO: %{name}:   https://forum.zdoom.org/viewtopic.php?t=81099"
 #{_libdir}/*
 #exclude %{_libdir}/cmake/*
 
-%files devel
-%{_includedir}/*
+#files devel
+#{_includedir}/*
 #{_libdir}/cmake/*
 
 %changelog
 * Wed Sep 23 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.3-1
 - Update to 5.0.3
+- Remove devel
 
 * Wed Sep 23 2026 Louis Abel <tucklesepk@gmail.com> - 5.0.2-1
 - Update to 5.0.2
